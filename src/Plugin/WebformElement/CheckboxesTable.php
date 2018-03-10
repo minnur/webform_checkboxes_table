@@ -17,4 +17,19 @@ use Drupal\webform\Plugin\WebformElement\Table;
  */
 class CheckboxesTable extends Table {
 
+  /**
+   * {@inheritdoc}
+   */
+  public function getDefaultProperties() {
+    return [
+      // Table settings.
+      'header' => [],
+      'empty' => '',
+      'title' => '',
+      'help' => '',
+      'description' => '',
+      'title_display' => ''
+    ];
+  }
+
 }
