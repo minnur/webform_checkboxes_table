@@ -1,0 +1,7 @@
+name: Webform Checkboxes Table
+type: module
+description: Display checkboxes element in a table grid
+core: 8.x
+package: 'Webform example'
+dependencies:
+  - 'webform:webform'
