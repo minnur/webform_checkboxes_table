@@ -21,7 +21,7 @@ class WebformCheckboxesTable extends Table {
       $help = ' <label class="option"><a href="#help" title="' . $help_text . '" data-webform-help="' . $help_text . '" class="webform-element-help">?</a></label>';
     }
     $description = '';
-    if (!empty($element['#description'])) {
+    if (is_array($element['#description'])) {
       $description = ' <div class="table-description">' . \Drupal::service('renderer')->renderPlain($element['#description']) .'</div>';
     }
     if (!empty($element['#title_display'])) {
