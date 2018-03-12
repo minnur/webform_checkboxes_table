@@ -27,7 +27,8 @@ class WebformCheckboxesTable extends Table {
         '#description'         => !empty($element['#description']) ? $element['#description'] : '',
         '#help'                => !empty($element['#help']) ? $element['#help'] : ''
       ];
-      $element['#' . ((!empty($element['#title_display']) && $element['#title_display'] == 'before') ? 'prefix' : 'suffix')] = \Drupal::service('renderer')->render($table_title);
+      $title_position = (!empty($element['#title_display']) && $element['#title_display'] == 'before') ? 'prefix' : 'suffix';
+      $element['#' . $title_position] = \Drupal::service('renderer')->render($table_title);
     }
     $row = 0;
     foreach (self::getCheckboxesElement($element) as $el_id => $el_info) {
