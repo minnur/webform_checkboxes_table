@@ -28,7 +28,8 @@ class CheckboxesTable extends Table {
       'title' => '',
       'help' => '',
       'description' => '',
-      'title_display' => ''
+      'title_display' => 'before',
+      'description_display' => 'after'
     ];
   }
 
