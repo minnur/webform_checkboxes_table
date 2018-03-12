@@ -27,21 +27,25 @@ class WebformCheckboxesTable extends Table {
         '#description'         => !empty($element['#description']) ? $element['#description'] : '',
         '#help'                => !empty($element['#help']) ? $element['#help'] : ''
       ];
-      $title_position = (!empty($element['#title_display']) && $element['#title_display'] == 'before') ? 'prefix' : 'suffix';
+      $title_position = ($element['#title_display'] == 'before') ? 'prefix' : 'suffix';
       $element['#' . $title_position] = \Drupal::service('renderer')->render($table_title);
     }
     $row = 0;
-    foreach (self::getCheckboxesElement($element) as $el_id => $el_info) {
+    foreach (self::getCheckboxesElements($element) as $el_id => $el_info) {
+      $el = $element[$el_id];
       if (!empty($element[$el_id]['#title']) && $el_info['#type'] == 'checkboxes') {
         $new_element = [
           '#type'                => 'item',
-          '#title'               => $element[$el_id]['#title'],
+          '#title'               => $el['#title'],
           '#title_display'       => 'before',
           '#description_display' => 'before',
-          '#description'         => !empty($element[$el_id]['#description']) ? $element[$el_id]['#description'] : '',
-          '#help'                => !empty($element[$el_id]['#help']) ? $element[$el_id]['#help'] : ''
+          '#description'         => !empty($el['#description']) ? $el['#description'] : '',
+          '#help'                => !empty($el['#help']) ? $el['#help'] : ''
         ];
-        $title_array = ['data' => \Drupal::service('renderer')->render($new_element), 'class' => $el_id . ' checkboxes-field-title'];
+        $title_array = [
+          'data'  => \Drupal::service('renderer')->render($new_element),
+          'class' => $el_id . ' checkboxes-field-title'
+        ];
         // Add field title to the beginning of the table data array.
         if ($el_info['#title_display'] == 'before') {
           array_unshift($element['#rows'][$row]['data'], $title_array);
@@ -58,7 +62,7 @@ class WebformCheckboxesTable extends Table {
   /**
    * Get checkboxes elements from a huge array mess (not sure if this is a reliable way).
    */
-  protected static function getCheckboxesElement($element) {
+  protected static function getCheckboxesElements($element) {
     $ids = [];
     foreach ($element as $key => $info) {
       if (!strstr($key, '#')) {
