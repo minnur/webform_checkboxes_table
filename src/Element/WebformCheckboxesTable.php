@@ -33,7 +33,7 @@ class WebformCheckboxesTable extends Table {
     $row = 0;
     foreach (self::getCheckboxesElements($element) as $el_id => $el_info) {
       $el = $element[$el_id];
-      if (!empty($element[$el_id]['#title']) && $el_info['#type'] == 'checkboxes') {
+      if (!empty($el['#title']) && $el_info['#type'] == 'checkboxes') {
         $new_element = [
           '#type'                => 'item',
           '#title'               => $el['#title'],
