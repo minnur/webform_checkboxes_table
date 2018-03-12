@@ -22,10 +22,10 @@ class WebformCheckboxesTable extends Table {
         '#type'                => 'item',
         '#title'               => $element['#title'],
         '#title_display'       => 'before',
-        '#help'                => $element['#help'],
         '#attributes'          => ['class' => [$element['#webform_key'], 'checkboxes-table-title']],
-        '#description_display' => $element['#description_display'],
-        '#description'         => $element['#description']
+        '#description_display' => !empty($element['#description_display']) ? $element['#description_display'] : '',
+        '#description'         => !empty($element['#description']) ? $element['#description'] : '',
+        '#help'                => !empty($element['#help']) ? $element['#help'] : ''
       ];
       $element['#' . ((!empty($element['#title_display']) && $element['#title_display'] == 'before') ? 'prefix' : 'suffix')] = \Drupal::service('renderer')->render($table_title);
     }
@@ -36,10 +36,9 @@ class WebformCheckboxesTable extends Table {
           '#type'                => 'item',
           '#title'               => $element[$el_id]['#title'],
           '#title_display'       => 'before',
-          '#description'         => $element[$el_id]['#description'],
-          '#help'                => $element[$el_id]['#help'],
           '#description_display' => 'before',
-          '#description'         => $element[$el_id]['#description'],
+          '#description'         => !empty($element[$el_id]['#description']) ? $element[$el_id]['#description'] : '',
+          '#help'                => !empty($element[$el_id]['#help']) ? $element[$el_id]['#help'] : ''
         ];
         $title_array = ['data' => \Drupal::service('renderer')->render($new_element), 'class' => $el_id . ' checkboxes-field-title'];
         // Add field title to the beginning of the table data array.
