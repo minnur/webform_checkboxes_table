@@ -37,3 +37,5 @@ checkboxes_table:
       'Option 3': 'Option 3'
       'Option 4': 'Option 4'
 ```
+
+Module developed by [Minnur Yunusov](https://www.minnur.com) at [Chapter Three](https://www.chapterthree.com)
