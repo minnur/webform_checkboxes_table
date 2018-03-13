@@ -51,6 +51,7 @@ class WebformCheckboxesTable extends Table {
           array_unshift($element['#rows'][$row]['data'], $title_array);
         }
         else {
+          // Add field title to the end of the table data array.
           $element['#rows'][$row]['data'][] = $title_array;
         }
       }
